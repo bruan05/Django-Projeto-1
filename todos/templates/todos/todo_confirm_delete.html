@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Excluír Tarefa
+    Excluír Pet?
 {% endblock page_title %}
 
 {% block content %}
-    <h1>Excluir Tarefa?</h1>
+    <h1>Excluir Pet?</h1>
 
-    <p>Tem certeza que deseja excluir a tarefa <strong>{{ todo.title }}</strong>?</p>
+    <p>Tem certeza que deseja excluir o pet? Recomendamos deixar as informações para caso sejam necessárias, forem de facil acesso! <strong>{{ todo.title }}</strong>?</p>
     <form method="POST">
     {% csrf_token %}
         <button type="submit" class="btn btn-danger">Excluir</button>

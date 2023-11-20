@@ -3,18 +3,18 @@
 
 {% block page_title %}
     {% if todo.pk %}
-        Editar Tarefa
+        Editar Pet
     {% else %}
-        Nova Tarefa
+        Novo Pet
     {% endif %}
 {% endblock page_title %}
 
 
 {% block content %}
     {% if todo.pk %}
-        <h1>Editar Tarefa</h1>
+        <h1>Editar informações do cadastro do Pet?</h1>
     {% else %}
-        <h1>Nova Tarefa</h1>
+        <h1>Novo Pet</h1>
     {% endif %}
         <form method="POST">
             {% csrf_token %}
