@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Gerenciamento De Pets
+{% endblock page_title %}
+
+
+{% block content %}
+    <h1>Gerenciamento de Pets</h1>
+        {% if info_list  %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome do Pet</th>
+                    <th scope="col">Tipo do Pet</th>
+                    <th scope="col">Raça do Pet</th>
+                    <th scope="col">Cor do Pet</th>
+                    <th scope="col">Genero do Pet</th>
+                    <th scope="col">Entrada do Pet</th>
+                    <th scope="col">Saída do Pet</th>
+                    <th scope="col">Conclusão do Pedido</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for Info, Pet in info_list %}
+                        <tr>
+                            <th scope="row">{{Info.pk}}</th>
+                            <td>{{Pet.title}}</td>
+                            <td>{{Pet.tipe}}</td>
+                            <td>{{Pet.breed}}</td>
+                            <td>{{Pet.color}}</td>
+                            <td>{{Pet.genero}}</td>
+                            <td>{{Info.created_at}}</td>
+                            <td>{{Info.deadline}}</td>
+                            <td>{{Info.finished_at}}</td>
+                            <td>
+                                <a href="{% url "info_complete" pk=Info.pk %}" class="btn btn-primary btn-sm {% if Info.finished_at %}disabled{% endif %}">Concluir</a>
+                                <a href="{% url "info_update" pk=Info.pk %}" class="btn btn-secondary btn-sm {% if Info.finished_at %}disabled{% endif %}">Editar</a> 
+                                <a href="{% url "info_delete" pk=Info.pk %}" class="btn btn-danger btn-sm">Excluir</a>    
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Não há Pets cadastrados!</p>
+        {% endif %}
+        <a href="{% url 'info_create' %}" class="btn btn-primary">Novo Cadastro</a>
+{% endblock content %}
+        

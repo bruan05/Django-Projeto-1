@@ -1,6 +1,5 @@
 from pathlib import Path
 from decouple import config, Csv
-from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -72,13 +71,37 @@ WSGI_APPLICATION = "setup.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": config(
+#         "DATABASE_URL",
+#         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+#         cast=db_url,
+#     )
+# }
+
 DATABASES = {
-    "default": config(
-        "DATABASE_URL",
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
-        cast=db_url,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test_db',
+        'USER': 'root',
+        'PASSWORD': 'rootroot',
+        'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
+        'PORT': '3306',      # or the port on which your MySQL server is listening
+    }
 }
+
+# DATABASES = {
+#     "default": config(
+#         "DATABASE_URL",
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'test_db',
+#         'USER': 'root',
+#         'PASSWORD': 'rootroot',
+#         'HOST': '127.0.0.1',  # or the hostname where your MySQL server is running
+#         'PORT': '3306',      # or the port on which your MySQL server is listening
+#     )
+# }
+
 
 
 # Password validation

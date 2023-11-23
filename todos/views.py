@@ -2,28 +2,28 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, V
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 
-from .models import Todo
+from .models import Info, Pet
 
-class TodoListView(ListView):
-    model = Todo
+class InfoListView(ListView):
+    model = Info, Pet
     
-class TodoCreateView(CreateView):
-    model = Todo
+class InfoCreateView(CreateView):
+    model = Info, Pet
     fields = ["title","tipe","breed","color","genero", "deadline"]
-    success_url = reverse_lazy("todo_list")
+    success_url = reverse_lazy("info_list")
     
-class TodoUpdateView(UpdateView):
-    model = Todo
+class InfoUpdateView(UpdateView):
+    model = Info, Pet
     fields = ["title","tipe","breed","color","genero", "deadline"]
-    success_url = reverse_lazy("todo_list")
+    success_url = reverse_lazy("info_list")
     
-class TodoDeleteView(DeleteView):
-    model = Todo
-    success_url = reverse_lazy("todo_list")
+class InfoDeleteView(DeleteView):
+    model = Info, Pet
+    success_url = reverse_lazy("info_list")
     
-class TodoCompleteView(View):
+class InfoCompleteView(View):
     def get(self, request, pk):
-        todo = get_object_or_404(Todo, pk=pk)
-        todo.mark_has_complete()
-        return redirect("todo_list")
+        Info = get_object_or_404(Info, pk=pk)
+        Info.mark_has_complete()
+        return redirect("info_list")
     
