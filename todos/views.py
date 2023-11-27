@@ -2,28 +2,27 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, V
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 
-from .models import Info, Pet
+from .models import Info
 
 class InfoListView(ListView):
-    model = Info, Pet
+    model = Info
     
 class InfoCreateView(CreateView):
-    model = Info, Pet
+    model = Info
     fields = ["title","tipe","breed","color","genero", "deadline"]
     success_url = reverse_lazy("info_list")
     
 class InfoUpdateView(UpdateView):
-    model = Info, Pet
+    model = Info
     fields = ["title","tipe","breed","color","genero", "deadline"]
-    success_url = reverse_lazy("info_list")
-    
+    success_url = reverse_lazy("info_list")    
 class InfoDeleteView(DeleteView):
-    model = Info, Pet
+    model = Info
     success_url = reverse_lazy("info_list")
     
 class InfoCompleteView(View):
     def get(self, request, pk):
-        Info = get_object_or_404(Info, pk=pk)
-        Info.mark_has_complete()
+        info = get_object_or_404(Info, pk=pk)
+        info.mark_has_complete()
         return redirect("info_list")
     

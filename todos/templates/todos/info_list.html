@@ -24,14 +24,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                    {% for Info, Pet in info_list %}
+                    {% for Info in info_list %}
                         <tr>
                             <th scope="row">{{Info.pk}}</th>
-                            <td>{{Pet.title}}</td>
-                            <td>{{Pet.tipe}}</td>
-                            <td>{{Pet.breed}}</td>
-                            <td>{{Pet.color}}</td>
-                            <td>{{Pet.genero}}</td>
+                            <td>{{Info.title}}</td>
+                            <td>{{Info.tipe}}</td>
+                            <td>{{Info.breed}}</td>
+                            <td>{{Info.color}}</td>
+                            <td>{{Info.genero}}</td>
                             <td>{{Info.created_at}}</td>
                             <td>{{Info.deadline}}</td>
                             <td>{{Info.finished_at}}</td>
@@ -49,4 +49,3 @@
         {% endif %}
         <a href="{% url 'info_create' %}" class="btn btn-primary">Novo Cadastro</a>
 {% endblock content %}
-        
